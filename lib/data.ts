@@ -43,12 +43,11 @@ const SECTION_MAP: Record<string, CategorySectionId> = {
   weapon: 'character', combination: 'character',
   // 특별
   pick: 'special', card: 'special', star: 'special', friend: 'special',
-  // 구분선 심볼
-  divider: 'symbol',
+  // 구분선 심볼 (divider 기본 카테고리는 primary라 사이드바에 숨김 — section 정의 불필요)
   div_heart: 'symbol', div_star: 'symbol', div_flower: 'symbol', div_moon: 'symbol',
   div_template: 'other',
   // 꾸밈 심볼
-  combo: 'symbol', emojico: 'symbol',
+  emojico: 'other',
   cmb_heart: 'symbol', cmb_star: 'symbol', cmb_flower: 'symbol', cmb_moon: 'symbol',
   cmb_template: 'other',
   // 색상 (콤보)

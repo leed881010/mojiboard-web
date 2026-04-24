@@ -215,8 +215,11 @@ export function EmojiApp({ lang, categories, i18n }: Props) {
     combo: i18n.groupCombo,
   }
 
+  // iOS와 동일하게 primary 카테고리(divider/combo)는 사이드바에서 숨김
+  const PRIMARY_CAT: Partial<Record<EmojiGroupId, string>> = { divider: 'divider', combo: 'combo' }
+
   const categoriesInGroup = useMemo(
-    () => categories.filter(c => c.group === activeGroup),
+    () => categories.filter(c => c.group === activeGroup && c.id !== PRIMARY_CAT[activeGroup]),
     [categories, activeGroup]
   )
 
