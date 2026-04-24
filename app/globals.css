@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
+/* ── Light theme (default) ────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg:             #f5f5f8;
+  --color-surface:        #ffffff;
+  --color-surface2:       #ededf2;
+  --color-surface3:       #e4e4ea;
+  --color-border:         rgba(0,0,0,0.08);
+  --color-border2:        rgba(0,0,0,0.15);
+  --color-text-primary:   #111116;
+  --color-text-secondary: #55555f;
+  --color-text-muted:     #999;
+  --color-accent:         #111116;
+  --color-accent2:        #55555f;
+  --color-accent-dim:     rgba(0,0,0,0.06);
+  --color-accent2-dim:    rgba(0,0,0,0.04);
+  /* 인터랙션 */
+  --color-item-hover:     rgba(0,0,0,0.05);
+  --color-item-active:    rgba(0,0,0,0.07);
+  --color-overlay:        rgba(0,0,0,0.07);
+  --color-overlay-border: rgba(0,0,0,0.15);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* ── Dark theme ───────────────────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-bg:             #09090f;
+    --color-surface:        #111118;
+    --color-surface2:       #1a1a24;
+    --color-surface3:       #22222e;
+    --color-border:         rgba(255,255,255,0.08);
+    --color-border2:        rgba(255,255,255,0.16);
+    --color-text-primary:   #eeeef8;
+    --color-text-secondary: #9090b8;
+    --color-text-muted:     #5a5a80;
+    --color-accent:         #eeeef8;
+    --color-accent2:        #9090b8;
+    --color-accent-dim:     rgba(255,255,255,0.07);
+    --color-accent2-dim:    rgba(255,255,255,0.04);
+    --color-item-hover:     rgba(255,255,255,0.05);
+    --color-item-active:    rgba(255,255,255,0.08);
+    --color-overlay:        rgba(255,255,255,0.10);
+    --color-overlay-border: rgba(255,255,255,0.18);
   }
 }
 
+/* ── Manual override (data-theme attribute) ───────────────────────────────── */
+[data-theme="light"] {
+  --color-bg:             #f5f5f8;
+  --color-surface:        #ffffff;
+  --color-surface2:       #ededf2;
+  --color-surface3:       #e4e4ea;
+  --color-border:         rgba(0,0,0,0.08);
+  --color-border2:        rgba(0,0,0,0.15);
+  --color-text-primary:   #111116;
+  --color-text-secondary: #55555f;
+  --color-text-muted:     #999;
+  --color-accent:         #111116;
+  --color-accent2:        #55555f;
+  --color-accent-dim:     rgba(0,0,0,0.06);
+  --color-accent2-dim:    rgba(0,0,0,0.04);
+  --color-item-hover:     rgba(0,0,0,0.05);
+  --color-item-active:    rgba(0,0,0,0.07);
+  --color-overlay:        rgba(0,0,0,0.07);
+  --color-overlay-border: rgba(0,0,0,0.15);
+}
+
+[data-theme="dark"] {
+  --color-bg:             #09090f;
+  --color-surface:        #111118;
+  --color-surface2:       #1a1a24;
+  --color-surface3:       #22222e;
+  --color-border:         rgba(255,255,255,0.08);
+  --color-border2:        rgba(255,255,255,0.16);
+  --color-text-primary:   #eeeef8;
+  --color-text-secondary: #9090b8;
+  --color-text-muted:     #5a5a80;
+  --color-accent:         #eeeef8;
+  --color-accent2:        #9090b8;
+  --color-accent-dim:     rgba(255,255,255,0.07);
+  --color-accent2-dim:    rgba(255,255,255,0.04);
+  --color-item-hover:     rgba(255,255,255,0.05);
+  --color-item-active:    rgba(255,255,255,0.08);
+  --color-overlay:        rgba(255,255,255,0.10);
+  --color-overlay-border: rgba(255,255,255,0.18);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100dvh;
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border2); border-radius: 3px; }
+
+.emoji-text {
+  font-family:
+    ui-monospace,
+    'SFMono-Regular', 'SF Mono',
+    'Cascadia Mono', 'Fira Code', 'JetBrains Mono',
+    'Courier New',
+    monospace,
+    'Noto Sans JP',
+    'Noto Sans KR',
+    'Hiragino Sans',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  line-height: 1.4;
 }

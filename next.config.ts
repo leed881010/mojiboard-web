@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  // Keep kaomoji.json out of the JS bundle — it's read server-side via fs
+  serverExternalPackages: [],
+}
 
-export default nextConfig;
+export default nextConfig
