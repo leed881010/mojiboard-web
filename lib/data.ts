@@ -11,7 +11,7 @@ const DIVIDER_CATS = new Set([
 const COMBO_CATS = new Set([
   'combo', 'emojico',
   'cmb_heart', 'cmb_star', 'cmb_flower', 'cmb_moon', 'cmb_christmas', 'cmb_template',
-  'cmb_pink', 'cmb_yellow', 'cmb_white', 'cmb_blue', 'cmb_green', 'cmb_purple', 'cmb_dark',
+  'cmb_pink', 'cmb_red', 'cmb_yellow', 'cmb_white', 'cmb_blue', 'cmb_green', 'cmb_purple', 'cmb_dark',
 ])
 
 function getGroup(categoryId: string): EmojiGroupId {
@@ -51,7 +51,7 @@ const SECTION_MAP: Record<string, CategorySectionId> = {
   cmb_heart: 'symbol', cmb_star: 'symbol', cmb_flower: 'symbol', cmb_moon: 'symbol',
   cmb_template: 'other',
   // 색상 (콤보)
-  cmb_pink: 'color', cmb_yellow: 'color', cmb_white: 'color',
+  cmb_pink: 'color', cmb_red: 'color', cmb_yellow: 'color', cmb_white: 'color',
   cmb_blue: 'color', cmb_green: 'color', cmb_purple: 'color', cmb_dark: 'color',
   // 시즌
   valentine: 'season', newyear: 'season',
@@ -134,6 +134,7 @@ export const CATEGORY_NAMES: Record<string, Record<string, string>> = {
   cmb_christmas:     { ko: '크리스마스',     en: 'Christmas',       ja: 'クリスマス' },
   cmb_template:      { ko: '텍스트 서식',    en: 'Template',        ja: 'テンプレート' },
   cmb_pink:          { ko: '핑크',           en: 'Pink',            ja: 'ピンク' },
+  cmb_red:           { ko: '레드',           en: 'Red',             ja: 'レッド' },
   cmb_yellow:        { ko: '옐로우',         en: 'Yellow',          ja: 'イエロー' },
   cmb_white:         { ko: '화이트',         en: 'White',           ja: 'ホワイト' },
   cmb_blue:          { ko: '블루',           en: 'Blue',            ja: 'ブルー' },

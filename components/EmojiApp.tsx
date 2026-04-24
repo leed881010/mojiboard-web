@@ -36,7 +36,7 @@ const DIVIDER_CATS = new Set([
 const COMBO_CATS = new Set([
   'combo', 'emojico',
   'cmb_heart', 'cmb_star', 'cmb_flower', 'cmb_moon', 'cmb_christmas', 'cmb_template',
-  'cmb_pink', 'cmb_yellow', 'cmb_white', 'cmb_blue', 'cmb_green', 'cmb_purple', 'cmb_dark',
+  'cmb_pink', 'cmb_red', 'cmb_yellow', 'cmb_white', 'cmb_blue', 'cmb_green', 'cmb_purple', 'cmb_dark',
 ])
 
 function emojiGroup(catId: string): EmojiGroupId {
