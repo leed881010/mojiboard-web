@@ -227,15 +227,25 @@ function buildSearchTokens(content: string, categoryIds: string[]): string {
   return parts.join(' ')
 }
 
+type RawItem = { id: string; content: string; categories: string[] }
+
+function readJson(filePath: string): RawItem[] {
+  try { return JSON.parse(fs.readFileSync(filePath, 'utf-8')) } catch { return [] }
+}
+
 export const loadEmojiData = cache((lang: string = 'ko'): EmojiData => {
-  const filePath = path.join(process.cwd(), 'public', 'kaomoji.json')
-  const raw: Array<{ id: string; content: string; categories: string[] }> =
-    JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+  const pub = path.join(process.cwd(), 'public')
+  // 세 파일 모두 읽어서 카테고리 전체 파악
+  const allRaw: RawItem[] = [
+    ...readJson(path.join(pub, 'kaomoji.json')),
+    ...readJson(path.join(pub, 'kaomoji-divider.json')),
+    ...readJson(path.join(pub, 'kaomoji-combo.json')),
+  ]
 
   const categoryOrder: string[] = []
   const categoryCounts: Record<string, number> = {}
 
-  for (const item of raw) {
+  for (const item of allRaw) {
     for (const catId of item.categories) {
       if (!categoryOrder.includes(catId)) categoryOrder.push(catId)
       categoryCounts[catId] = (categoryCounts[catId] ?? 0) + 1
@@ -250,7 +260,7 @@ export const loadEmojiData = cache((lang: string = 'ko'): EmojiData => {
     count: categoryCounts[id] ?? 0,
   }))
 
-  const emojis: TextEmoji[] = raw.map(item => ({
+  const emojis: TextEmoji[] = allRaw.map(item => ({
     id: item.id,
     content: item.content,
     categoryIds: item.categories,
