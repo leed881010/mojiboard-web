@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react'
+import { Analytics } from './AmplitudeProvider'
 import { Header } from './Header'
 import { Sidebar } from './Sidebar'
 import { GroupTabs } from './GroupTabs'
@@ -209,6 +210,7 @@ export function EmojiApp({ lang, categories, i18n }: Props) {
     return () => clearTimeout(t)
   }, [fetchGroup])
 
+
   const groupLabels: Record<EmojiGroupId, string> = {
     kaomoji: i18n.groupKaomoji,
     divider: i18n.groupDivider,
@@ -249,18 +251,29 @@ export function EmojiApp({ lang, categories, i18n }: Props) {
     return pool
   }, [data.groups, searchText, activeCategoryId, activeGroup, showFavoritesOnly, favoriteIds])
 
+  // 검색 로깅 (1초 debounce)
+  useEffect(() => {
+    if (!searchText.trim()) return
+    const t = setTimeout(() => {
+      Analytics.searchUsed(searchText, visibleEmojis.length)
+    }, 1000)
+    return () => clearTimeout(t)
+  }, [searchText, visibleEmojis.length])
+
   const handleGroupChange = useCallback((group: EmojiGroupId) => {
-    fetchGroup(group)   // 이미 로드됐으면 no-op
+    fetchGroup(group)
     setActiveGroup(group)
     setActiveCategoryId(null)
     setSearchText('')
     setShowFavoritesOnly(false)
+    Analytics.groupChanged(group)
   }, [fetchGroup])
 
   const handleCategorySelect = useCallback((id: string | null) => {
     setActiveCategoryId(id)
     setShowFavoritesOnly(false)
     setSidebarOpen(false)
+    Analytics.filterApplied(id ?? 'all')
   }, [])
 
   const handleCopy = useCallback((emoji: TextEmoji) => {
@@ -268,7 +281,8 @@ export function EmojiApp({ lang, categories, i18n }: Props) {
     setCopiedId(emoji.id)
     if (toastTimer.current) clearTimeout(toastTimer.current)
     toastTimer.current = setTimeout(() => setCopiedId(null), COPY_TOAST_MS)
-  }, [])
+    Analytics.emojiCopied(emoji.content, emoji.categoryIds[0] ?? 'unknown', activeGroup)
+  }, [activeGroup])
 
   const handleToggleFavorite = useCallback((id: string) => {
     setFavoriteIds(prev => {

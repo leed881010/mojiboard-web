@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { AmplitudeProvider } from '@/components/AmplitudeProvider'
 
 const BASE_URL = 'https://mojiboard.pepper-factory.com'
 
@@ -72,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           })}}
         />
       </head>
-      <body>{children}</body>
+      <body><AmplitudeProvider>{children}</AmplitudeProvider></body>
     </html>
   )
 }

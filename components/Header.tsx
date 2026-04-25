@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type { Lang } from '@/types'
+import { Analytics } from './AmplitudeProvider'
 import { SUPPORTED_LANGS, getLangLabel } from '@/lib/i18n'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -174,6 +175,7 @@ export function Header({
           href={APP_STORE_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => Analytics.appStoreClicked()}
           style={{
             background: 'var(--color-overlay)',
             border: '1px solid var(--color-overlay-border)',
