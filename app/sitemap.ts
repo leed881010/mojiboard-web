@@ -8,7 +8,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const data = loadEmojiData('ko')
   const entries: MetadataRoute.Sitemap = []
 
-  // Main pages
+  // Root page with x-default
+  entries.push({
+    url: BASE_URL,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 1.0,
+    alternates: {
+      languages: {
+        'x-default': BASE_URL,
+        ko: `${BASE_URL}/ko`,
+        en: `${BASE_URL}/en`,
+        ja: `${BASE_URL}/ja`,
+      },
+    },
+  })
+
+  // Main pages per language
   for (const lang of LANGS) {
     entries.push({
       url: `${BASE_URL}/${lang}`,

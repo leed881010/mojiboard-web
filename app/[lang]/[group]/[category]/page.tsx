@@ -70,9 +70,31 @@ export default async function CategoryPage({ params }: Props) {
 
   const catName = CATEGORY_NAMES[category]?.[lang] ?? category
   const groupLabel = t(lang, group === 'kaomoji' ? 'groupKaomoji' : group === 'divider' ? 'groupDivider' : 'groupCombo')
+  const countStr = lang === 'ko' ? `${emojis.length}개` : lang === 'ja' ? `${emojis.length}件` : `${emojis.length} items`
+  const inLanguage = lang === 'ko' ? 'ko-KR' : lang === 'ja' ? 'ja-JP' : 'en-US'
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `${catName} ${groupLabel}`,
+    description: `${t(lang, 'ogDescription', { category: catName })} (${countStr})`,
+    url: `https://mojiboard.pepper-factory.com/${lang}/${group}/${category}`,
+    inLanguage,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: emojis.length,
+      itemListElement: emojis.slice(0, 20).map((emoji, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: emoji.content,
+      })),
+    },
+  }
 
   return (
-    <div style={{ background: 'var(--color-bg)', minHeight: '100dvh', color: 'var(--color-text-primary)' }}>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <div style={{ background: 'var(--color-bg)', minHeight: '100dvh', color: 'var(--color-text-primary)' }}>
       {/* minimal header */}
       <header style={{ borderBottom: '1px solid var(--color-border)', padding: '16px 24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
         <Link href={`/${lang}`} style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', fontSize: '14px' }}>
@@ -93,5 +115,6 @@ export default async function CategoryPage({ params }: Props) {
         <CategoryPageGrid emojis={emojis} copiedLabel={t(lang, 'copied')} />
       </main>
     </div>
+    </>
   )
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isValidLang, t } from '@/lib/i18n'
+import { LangUpdater } from '@/components/LangUpdater'
 import type { Lang } from '@/types'
 
 interface Props {
@@ -33,5 +34,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LangLayout({ children, params }: Props) {
   const { lang } = await params
   if (!isValidLang(lang)) notFound()
-  return <>{children}</>
+  return (
+    <>
+      <LangUpdater lang={lang} />
+      {children}
+    </>
+  )
 }
