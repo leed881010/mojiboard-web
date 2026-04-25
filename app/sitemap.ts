@@ -37,6 +37,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   }
 
+  // Guide pages
+  for (const lang of LANGS) {
+    entries.push({
+      url: `${BASE_URL}/${lang}/guide`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+      alternates: {
+        languages: Object.fromEntries(LANGS.map(l => [l, `${BASE_URL}/${l}/guide`])),
+      },
+    })
+  }
+
   // Category pages — grouped by category (not by lang) to include hreflang
   const koData = loadEmojiData('ko')
   for (const cat of koData.categories) {

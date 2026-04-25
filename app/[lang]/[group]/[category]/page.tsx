@@ -3,6 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { isValidLang, t } from '@/lib/i18n'
 import { loadEmojiData, CATEGORY_NAMES } from '@/lib/data'
+import { getCategoryDescription, getRelatedCategories } from '@/lib/category-descriptions'
 import { CategoryPageGrid } from '@/components/CategoryPageGrid'
 import type { Lang, EmojiGroupId } from '@/types'
 
@@ -72,6 +73,9 @@ export default async function CategoryPage({ params }: Props) {
   const groupLabel = t(lang, group === 'kaomoji' ? 'groupKaomoji' : group === 'divider' ? 'groupDivider' : 'groupCombo')
   const countStr = lang === 'ko' ? `${emojis.length}개` : lang === 'ja' ? `${emojis.length}件` : `${emojis.length} items`
   const inLanguage = lang === 'ko' ? 'ko-KR' : lang === 'ja' ? 'ja-JP' : 'en-US'
+  const description = getCategoryDescription(category, lang)
+  const relatedIds = getRelatedCategories(category)
+  const relatedCats = data.categories.filter(c => relatedIds.includes(c.id))
 
   const BASE_URL = 'https://mojiboard.pepper-factory.com'
 
@@ -121,6 +125,11 @@ export default async function CategoryPage({ params }: Props) {
 
       <main style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px' }}>
         <h1 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '8px' }}>{catName}</h1>
+        {description && (
+          <p style={{ color: 'var(--color-text-secondary)', marginBottom: '24px', fontSize: '15px', lineHeight: '1.7' }}>
+            {description}
+          </p>
+        )}
         <p style={{ color: 'var(--color-text-secondary)', marginBottom: '32px', fontSize: '14px' }}>
           {emojis.length}{lang === 'ko' ? '개' : lang === 'ja' ? '件' : ' items'}
         </p>
@@ -143,6 +152,27 @@ export default async function CategoryPage({ params }: Props) {
             ))}
           </ul>
         </section>
+
+        {/* 관련 카테고리 */}
+        {relatedCats.length > 0 && (
+          <nav aria-label="related categories" style={{ marginTop: '32px' }}>
+            <p style={{ fontSize: '13px', color: 'var(--color-text-muted)', marginBottom: '10px' }}>
+              {lang === 'ko' ? '관련 카테고리' : lang === 'ja' ? '関連カテゴリ' : 'Related Categories'}
+            </p>
+            <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', listStyle: 'none', padding: 0, margin: 0 }}>
+              {relatedCats.map(cat => (
+                <li key={cat.id}>
+                  <Link href={`/${lang}/${cat.group}/${cat.id}`}
+                    style={{ display: 'inline-block', padding: '6px 14px', borderRadius: '8px',
+                      background: 'var(--color-surface)', border: '1px solid var(--color-border)',
+                      textDecoration: 'none', color: 'var(--color-text-primary)', fontSize: '14px' }}>
+                    {cat.displayName}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </main>
     </div>
     </>

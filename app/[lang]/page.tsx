@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { isValidLang, t } from '@/lib/i18n'
 import { loadEmojiData } from '@/lib/data'
 import { EmojiApp } from '@/components/EmojiApp'
@@ -49,6 +50,11 @@ export default async function MainPage({ params }: Props) {
         <h1 style={{ fontSize: '32px', fontWeight: 700, marginBottom: '12px' }}>
           {t(lang, 'siteTitle')}
         </h1>
+        <p style={{ marginBottom: '12px' }}>
+          <Link href={`/${lang}/guide`} style={{ color: 'var(--color-text-secondary)', fontSize: '14px' }}>
+            {lang === 'ko' ? '카오모지 가이드 →' : lang === 'ja' ? '顔文字ガイド →' : 'Kaomoji Guide →'}
+          </Link>
+        </p>
         <p style={{ color: 'var(--color-text-secondary)', marginBottom: '48px', fontSize: '16px', lineHeight: '1.7' }}>
           {t(lang, 'siteDescription')}
         </p>
