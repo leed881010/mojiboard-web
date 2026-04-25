@@ -70,6 +70,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             operatingSystem: 'Web, iOS',
             offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
             author: { '@type': 'Organization', name: 'Pepper Factory', url: 'https://pepper-factory.com' },
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: { '@type': 'EntryPoint', urlTemplate: `${BASE_URL}/ko?q={search_term_string}` },
+              'query-input': 'required name=search_term_string',
+            },
           })}}
         />
       </head>

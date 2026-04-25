@@ -37,17 +37,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   }
 
-  // Category pages
-  for (const lang of LANGS) {
-    const langData = loadEmojiData(lang)
-    for (const cat of langData.categories) {
-      entries.push({
-        url: `${BASE_URL}/${lang}/${cat.group}/${cat.id}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly',
-        priority: 0.7,
-      })
-    }
+  // Category pages — grouped by category (not by lang) to include hreflang
+  const koData = loadEmojiData('ko')
+  for (const cat of koData.categories) {
+    entries.push({
+      url: `${BASE_URL}/ko/${cat.group}/${cat.id}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+      alternates: {
+        languages: Object.fromEntries(LANGS.map(l => [l, `${BASE_URL}/${l}/${cat.group}/${cat.id}`])),
+      },
+    })
   }
 
   return entries

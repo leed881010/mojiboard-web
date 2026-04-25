@@ -73,12 +73,14 @@ export default async function CategoryPage({ params }: Props) {
   const countStr = lang === 'ko' ? `${emojis.length}개` : lang === 'ja' ? `${emojis.length}件` : `${emojis.length} items`
   const inLanguage = lang === 'ko' ? 'ko-KR' : lang === 'ja' ? 'ja-JP' : 'en-US'
 
-  const jsonLd = {
+  const BASE_URL = 'https://mojiboard.pepper-factory.com'
+
+  const collectionLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `${catName} ${groupLabel}`,
     description: `${t(lang, 'ogDescription', { category: catName })} (${countStr})`,
-    url: `https://mojiboard.pepper-factory.com/${lang}/${group}/${category}`,
+    url: `${BASE_URL}/${lang}/${group}/${category}`,
     inLanguage,
     mainEntity: {
       '@type': 'ItemList',
@@ -91,9 +93,20 @@ export default async function CategoryPage({ params }: Props) {
     },
   }
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Moji Board', item: `${BASE_URL}/${lang}` },
+      { '@type': 'ListItem', position: 2, name: groupLabel, item: `${BASE_URL}/${lang}` },
+      { '@type': 'ListItem', position: 3, name: catName, item: `${BASE_URL}/${lang}/${group}/${category}` },
+    ],
+  }
+
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div style={{ background: 'var(--color-bg)', minHeight: '100dvh', color: 'var(--color-text-primary)' }}>
       {/* minimal header */}
       <header style={{ borderBottom: '1px solid var(--color-border)', padding: '16px 24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -113,6 +126,23 @@ export default async function CategoryPage({ params }: Props) {
         </p>
 
         <CategoryPageGrid emojis={emojis} copiedLabel={t(lang, 'copied')} />
+
+        {/* SSR: 카오모지 문자를 초기 HTML에 포함하여 검색 엔진 인덱싱 지원 */}
+        <section
+          aria-label={catName}
+          style={{ marginTop: '48px', paddingTop: '24px', borderTop: '1px solid var(--color-border)' }}
+        >
+          <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', listStyle: 'none', padding: 0, margin: 0 }}>
+            {emojis.map(emoji => (
+              <li
+                key={emoji.id}
+                style={{ fontFamily: 'monospace', fontSize: '13px', color: 'var(--color-text-muted)', lineHeight: '1.6' }}
+              >
+                {emoji.content}
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
     </div>
     </>
