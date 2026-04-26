@@ -14,13 +14,14 @@ interface Props {
   scrollResetKey: string
   onCopy: (emoji: TextEmoji) => void
   onToggleFavorite: (id: string) => void
+  children?: React.ReactNode
 }
 
 const CARD_MIN_W = 160
 const CARD_H = 120    // 카드 추정 높이 (gap 포함)
 const GAP = 10
 
-export function EmojiGrid({ emojis, favoriteIds, copiedId, emptyLabel, copyHint, scrollResetKey, onCopy, onToggleFavorite }: Props) {
+export function EmojiGrid({ emojis, favoriteIds, copiedId, emptyLabel, copyHint, scrollResetKey, onCopy, onToggleFavorite, children }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   // 그리드 열 개수 계산
@@ -52,16 +53,20 @@ export function EmojiGrid({ emojis, favoriteIds, copiedId, emptyLabel, copyHint,
 
   if (emojis.length === 0) {
     return (
-      <div style={{
-        flex: 1, display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center',
-        color: 'var(--color-text-muted)', gap: '12px',
-      }}>
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <circle cx="18" cy="18" r="11" stroke="currentColor" strokeWidth="2"/>
-          <path d="M27 27l8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        </svg>
-        <p style={{ fontSize: '14px' }}>{emptyLabel}</p>
+      <div ref={scrollRef} style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+        <div style={{
+          flex: 1, display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center',
+          color: 'var(--color-text-muted)', gap: '12px',
+          minHeight: '200px',
+        }}>
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <circle cx="18" cy="18" r="11" stroke="currentColor" strokeWidth="2"/>
+            <path d="M27 27l8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+          <p style={{ fontSize: '14px' }}>{emptyLabel}</p>
+        </div>
+        {children}
       </div>
     )
   }
@@ -111,6 +116,7 @@ export function EmojiGrid({ emojis, favoriteIds, copiedId, emptyLabel, copyHint,
           )
         })}
       </div>
+      {children}
     </div>
   )
 }

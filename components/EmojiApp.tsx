@@ -26,6 +26,7 @@ interface Props {
   lang: Lang
   categories: EmojiCategory[]
   i18n: I18n
+  children?: React.ReactNode
 }
 
 // ── data constants (mirrors lib/data.ts) ──────────────────────────────────────
@@ -157,7 +158,7 @@ type DataState = {
   errors: Set<EmojiGroupId>
 }
 
-export function EmojiApp({ lang, categories, i18n }: Props) {
+export function EmojiApp({ lang, categories, i18n, children }: Props) {
   const [data, setData] = useState<DataState>({ groups: {}, loading: new Set(), errors: new Set() })
   const [activeGroup, setActiveGroup] = useState<EmojiGroupId>('kaomoji')
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null)
@@ -380,7 +381,9 @@ export function EmojiApp({ lang, categories, i18n }: Props) {
               scrollResetKey={`${activeGroup}-${activeCategoryId ?? 'all'}`}
               onCopy={handleCopy}
               onToggleFavorite={handleToggleFavorite}
-            />
+            >
+              {children}
+            </EmojiGrid>
           )}
         </div>
       </div>

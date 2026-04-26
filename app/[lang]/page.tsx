@@ -28,61 +28,57 @@ export default async function MainPage({ params }: Props) {
   })).filter(g => g.categories.length > 0)
 
   return (
-    <>
-      <EmojiApp
-        lang={lang}
-        categories={data.categories}
-        i18n={{
-          groupKaomoji: t(lang, 'groupKaomoji'),
-          groupDivider: t(lang, 'groupDivider'),
-          groupCombo: t(lang, 'groupCombo'),
-          searchPlaceholder: t(lang, 'searchPlaceholder'),
-          categoryAll: t(lang, 'categoryAll'),
-          emptyResult: t(lang, 'emptyResult'),
-          copied: t(lang, 'copied'),
-          copyHint: t(lang, 'copyHint'),
-          downloadApp: t(lang, 'downloadApp'),
-          favoritesOnly: t(lang, 'favoritesOnly'),
-        }}
-      />
-      {/* SSR section: search engines index this even though users see EmojiApp above */}
-      <section style={{ maxWidth: '960px', margin: '0 auto', padding: '60px 24px 80px', color: 'var(--color-text-primary)' }}>
-        <h1 style={{ fontSize: '32px', fontWeight: 700, marginBottom: '12px' }}>
+    <EmojiApp
+      lang={lang}
+      categories={data.categories}
+      i18n={{
+        groupKaomoji: t(lang, 'groupKaomoji'),
+        groupDivider: t(lang, 'groupDivider'),
+        groupCombo: t(lang, 'groupCombo'),
+        searchPlaceholder: t(lang, 'searchPlaceholder'),
+        categoryAll: t(lang, 'categoryAll'),
+        emptyResult: t(lang, 'emptyResult'),
+        copied: t(lang, 'copied'),
+        copyHint: t(lang, 'copyHint'),
+        downloadApp: t(lang, 'downloadApp'),
+        favoritesOnly: t(lang, 'favoritesOnly'),
+      }}
+    >
+      {/* SSR footer: EmojiGrid 스크롤 영역 끝부분에 위치 */}
+      <footer style={{ maxWidth: '960px', margin: '40px auto 24px', padding: '32px 8px 16px', borderTop: '1px solid var(--color-border)', color: 'var(--color-text-primary)' }}>
+        <h2 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '8px' }}>
           {t(lang, 'siteTitle')}
-        </h1>
+        </h2>
         <p style={{ marginBottom: '12px' }}>
           <Link href={`/${lang}/guide`} style={{ color: 'var(--color-text-secondary)', fontSize: '14px' }}>
             {lang === 'ko' ? '카오모지 가이드 →' : lang === 'ja' ? '顔文字ガイド →' : 'Kaomoji Guide →'}
           </Link>
         </p>
-        <p style={{ color: 'var(--color-text-secondary)', marginBottom: '48px', fontSize: '16px', lineHeight: '1.7' }}>
+        <p style={{ color: 'var(--color-text-secondary)', marginBottom: '32px', fontSize: '14px', lineHeight: '1.7' }}>
           {t(lang, 'siteDescription')}
         </p>
         {byGroup.map(({ group, label, categories }) => (
-          <div key={group} style={{ marginBottom: '40px' }}>
-            <h2 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px' }}>{label}</h2>
-            <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', listStyle: 'none', padding: 0, margin: 0 }}>
+          <div key={group} style={{ marginBottom: '24px' }}>
+            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '10px', color: 'var(--color-text-secondary)' }}>{label}</h3>
+            <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', listStyle: 'none', padding: 0, margin: 0 }}>
               {categories.map(cat => (
                 <li key={cat.id}>
                   <a
                     href={`/${lang}/${cat.group}/${cat.id}`}
                     style={{
-                      display: 'inline-block', padding: '6px 14px', borderRadius: '8px',
+                      display: 'inline-block', padding: '4px 10px', borderRadius: '6px',
                       background: 'var(--color-surface)', border: '1px solid var(--color-border)',
-                      textDecoration: 'none', color: 'var(--color-text-primary)', fontSize: '14px',
+                      textDecoration: 'none', color: 'var(--color-text-primary)', fontSize: '12px',
                     }}
                   >
                     {cat.displayName}
-                    <span style={{ color: 'var(--color-text-muted)', fontSize: '12px', marginLeft: '6px' }}>
-                      {cat.count}
-                    </span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
         ))}
-      </section>
-    </>
+      </footer>
+    </EmojiApp>
   )
 }
