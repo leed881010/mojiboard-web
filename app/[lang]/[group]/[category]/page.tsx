@@ -136,26 +136,9 @@ export default async function CategoryPage({ params }: Props) {
 
         <CategoryPageGrid emojis={emojis} copiedLabel={t(lang, 'copied')} />
 
-        {/* SSR: 카오모지 문자를 초기 HTML에 포함하여 검색 엔진 인덱싱 지원 */}
-        <section
-          aria-label={catName}
-          style={{ marginTop: '48px', paddingTop: '24px', borderTop: '1px solid var(--color-border)' }}
-        >
-          <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', listStyle: 'none', padding: 0, margin: 0 }}>
-            {emojis.map(emoji => (
-              <li
-                key={emoji.id}
-                style={{ fontFamily: 'monospace', fontSize: '13px', color: 'var(--color-text-muted)', lineHeight: '1.6' }}
-              >
-                {emoji.content}
-              </li>
-            ))}
-          </ul>
-        </section>
-
         {/* 관련 카테고리 */}
         {relatedCats.length > 0 && (
-          <nav aria-label="related categories" style={{ marginTop: '32px' }}>
+          <nav aria-label="related categories" style={{ marginTop: '48px', paddingTop: '24px', borderTop: '1px solid var(--color-border)' }}>
             <p style={{ fontSize: '13px', color: 'var(--color-text-muted)', marginBottom: '10px' }}>
               {lang === 'ko' ? '관련 카테고리' : lang === 'ja' ? '関連カテゴリ' : 'Related Categories'}
             </p>
@@ -173,6 +156,23 @@ export default async function CategoryPage({ params }: Props) {
             </ul>
           </nav>
         )}
+
+        {/* SSR: <details>로 접혀있어 UX를 해치지 않으면서 구글이 전체 텍스트 인덱싱 가능 */}
+        <details style={{ marginTop: '24px' }}>
+          <summary style={{
+            fontSize: '13px', color: 'var(--color-text-muted)', cursor: 'pointer',
+            userSelect: 'none', listStyle: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px',
+          }}>
+            {lang === 'ko' ? `전체 목록 (${emojis.length}개)` : lang === 'ja' ? `全リスト (${emojis.length}件)` : `Full list (${emojis.length} items)`}
+          </summary>
+          <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', listStyle: 'none', padding: '12px 0 0', margin: 0 }}>
+            {emojis.map(emoji => (
+              <li key={emoji.id} style={{ fontFamily: 'monospace', fontSize: '13px', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
+                {emoji.content}
+              </li>
+            ))}
+          </ul>
+        </details>
       </main>
     </div>
     </>
