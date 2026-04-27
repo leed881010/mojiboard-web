@@ -20,8 +20,8 @@ type Translations = Record<TranslationKey, string>
 
 const translations: Record<Lang, Translations> = {
   ko: {
-    siteTitle: 'Moji Board — 카오모지 & 이모티콘',
-    siteDescription: '10,000개 이상의 카오모지와 텍스트 이모티콘. 클릭 한 번으로 복사하세요.',
+    siteTitle: '모찌보드 (Moji Board) — 카오모지 & 이모티콘',
+    siteDescription: '모찌보드 — 10,000개 이상의 카오모지와 텍스트 이모티콘. 클릭 한 번으로 복사하세요.',
     groupKaomoji: '카오모지',
     groupDivider: '구분선',
     groupCombo: '콤보',
@@ -45,8 +45,8 @@ const translations: Record<Lang, Translations> = {
     sectionOther: '기타',
   },
   en: {
-    siteTitle: 'Moji Board — Kaomoji & Emoticons',
-    siteDescription: '10,000+ kaomoji and text emoticons. Click to copy instantly.',
+    siteTitle: 'Moji Board — Kaomoji (카오모지) & Emoticons',
+    siteDescription: '10,000+ kaomoji (카오모지) and text emoticons. Click to copy instantly.',
     groupKaomoji: 'Kaomoji',
     groupDivider: 'Dividers',
     groupCombo: 'Combos',
@@ -70,8 +70,8 @@ const translations: Record<Lang, Translations> = {
     sectionOther: 'Other',
   },
   ja: {
-    siteTitle: 'Moji Board — 顔文字 & 絵文字',
-    siteDescription: '10,000以上の顔文字とテキスト絵文字。ワンクリックでコピー。',
+    siteTitle: 'Moji Board — 顔文字 (카오모지) & 絵文字',
+    siteDescription: '10,000以上の顔文字 (카오모지) とテキスト絵文字。ワンクリックでコピー。',
     groupKaomoji: '顔文字',
     groupDivider: '区切り線',
     groupCombo: 'コンボ',

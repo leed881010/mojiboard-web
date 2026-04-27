@@ -99,6 +99,38 @@ const CONTENT = {
     section4Title: '인기 카오모지 TOP 10',
     section4Desc: '가장 많이 사랑받는 행복(Happy) 카테고리의 카오모지 TOP 10을 소개합니다.',
 
+    faqTitle: '자주 묻는 질문 (FAQ)',
+    faqs: [
+      {
+        q: '모찌보드(Moji Board)는 무엇인가요?',
+        a: '모찌보드는 10,000개 이상의 카오모지(顔文字)와 텍스트 이모티콘을 카테고리별로 모아둔 무료 웹·iOS 서비스입니다. 한국어, 영어, 일본어로 검색할 수 있고 카오모지를 클릭하면 클립보드에 바로 복사됩니다.',
+      },
+      {
+        q: '카오모지(Kaomoji)와 이모지(Emoji)는 무엇이 다른가요?',
+        a: '이모지(😀)는 유니코드로 정의된 작은 그림 문자이고, 카오모지(^▽^)는 일반 키보드 기호와 문자를 조합해 만드는 텍스트 기반 표정입니다. 카오모지는 폰트만 지원되면 어디서든 사용 가능하며, 이모지보다 표현이 훨씬 풍부합니다.',
+      },
+      {
+        q: '모찌보드는 무료인가요? 회원가입이 필요한가요?',
+        a: '네, 모찌보드는 완전 무료입니다. 회원가입이나 로그인 없이 바로 사용할 수 있고, 별도의 광고 차단이나 결제 없이 모든 카오모지를 복사할 수 있습니다.',
+      },
+      {
+        q: '복사한 카오모지를 어디에 붙여넣을 수 있나요?',
+        a: '카카오톡, 인스타그램 DM, 트위터(X), 디스코드, 라인, 페이스북, 슬랙 등 텍스트를 입력할 수 있는 모든 곳에 붙여넣을 수 있습니다. PC에서는 Ctrl+V, 모바일에서는 길게 눌러 "붙여넣기"를 선택하세요.',
+      },
+      {
+        q: '모찌보드 iOS 앱은 어떻게 다운로드하나요?',
+        a: 'App Store에서 "Moji Board" 또는 "모찌보드"로 검색하거나 페이지 상단의 "앱 다운로드" 버튼을 누르면 됩니다. iOS 앱은 오프라인에서도 모든 카오모지를 사용할 수 있고, 즐겨찾기·키보드 확장 기능을 제공합니다.',
+      },
+      {
+        q: '카오모지가 깨져서 표시돼요. 왜 그런가요?',
+        a: '일부 카오모지는 일본어/한국어 특수 문자나 결합 기호를 사용하기 때문에, 시스템에 해당 폰트가 없으면 □ 또는 ?로 표시될 수 있습니다. 모찌보드는 Noto Sans KR/JP 폰트를 자동으로 로드해 정상 표시되도록 합니다.',
+      },
+      {
+        q: '원하는 카오모지를 빨리 찾으려면 어떻게 해야 하나요?',
+        a: '상단 검색창에서 키워드(예: "고양이", "happy", "猫")로 한국어·영어·일본어 검색이 가능합니다. 또는 좌측 사이드바에서 감정·동물·활동 등 카테고리별로 탐색할 수도 있습니다.',
+      },
+    ],
+
     ctaTitle: '더 많은 카오모지 탐색하기',
     ctaDesc: 'Moji Board 앱에서 10,000개 이상의 카오모지를 오프라인에서도 자유롭게 사용하세요.',
     ctaMain: '메인으로 돌아가기',
@@ -136,6 +168,38 @@ const CONTENT = {
     section4Title: 'Top 10 Popular Kaomoji',
     section4Desc: 'Here are the top 10 kaomoji from the beloved Happy category.',
 
+    faqTitle: 'Frequently Asked Questions (FAQ)',
+    faqs: [
+      {
+        q: 'What is Moji Board?',
+        a: 'Moji Board is a free web and iOS service offering 10,000+ kaomoji (顔文字) and text emoticons organized by category. Search in Korean, English, or Japanese, and click any kaomoji to copy it to your clipboard instantly.',
+      },
+      {
+        q: 'What is the difference between kaomoji and emoji?',
+        a: 'Emoji (😀) are pictographs defined in Unicode, while kaomoji (^▽^) are text-based expressions made by combining regular keyboard symbols and characters. Kaomoji work anywhere fonts are supported and offer far richer, more creative expressions than emoji.',
+      },
+      {
+        q: 'Is Moji Board free? Do I need to sign up?',
+        a: 'Yes, Moji Board is completely free. No signup, no login, no payment required — every kaomoji can be copied instantly without any restrictions.',
+      },
+      {
+        q: 'Where can I paste the copied kaomoji?',
+        a: 'You can paste them into any text field — KakaoTalk, Instagram DMs, X (Twitter), Discord, LINE, Facebook, Slack, and more. On desktop press Ctrl+V (or ⌘+V on Mac); on mobile, long-press and tap "Paste."',
+      },
+      {
+        q: 'How do I download the Moji Board iOS app?',
+        a: 'Search "Moji Board" on the App Store, or tap the "Download App" button at the top of the page. The iOS app works offline, supports favorites, and includes a keyboard extension for typing kaomoji anywhere.',
+      },
+      {
+        q: 'Why do some kaomoji appear as boxes or question marks?',
+        a: 'Some kaomoji use Japanese or Korean characters and combining marks. If your system lacks the right font, they may display as □ or ?. Moji Board automatically loads Noto Sans KR/JP so kaomoji render correctly on all devices.',
+      },
+      {
+        q: 'How do I find kaomoji quickly?',
+        a: 'Use the search bar at the top with keywords in Korean, English, or Japanese (e.g. "cat", "happy", "猫"). You can also browse by category — emotions, animals, actions, characters — using the left sidebar.',
+      },
+    ],
+
     ctaTitle: 'Explore More Kaomoji',
     ctaDesc: 'Get the Moji Board app for offline access to 10,000+ kaomoji anytime, anywhere.',
     ctaMain: 'Back to Main',
@@ -172,6 +236,38 @@ const CONTENT = {
 
     section4Title: '人気顔文字 TOP 10',
     section4Desc: '最も人気のある「嬉しい（Happy）」カテゴリーから厳選したTOP 10の顔文字をご紹介します。',
+
+    faqTitle: 'よくある質問 (FAQ)',
+    faqs: [
+      {
+        q: 'Moji Board (モジボード) とは何ですか？',
+        a: 'Moji Boardは10,000以上の顔文字（カオモジ）とテキスト絵文字をカテゴリー別にまとめた無料のWeb・iOSサービスです。日本語・韓国語・英語で検索でき、顔文字をクリックするだけでクリップボードにコピーされます。',
+      },
+      {
+        q: '顔文字（kaomoji）と絵文字（emoji）の違いは何ですか？',
+        a: '絵文字（😀）はUnicodeで定義された絵記号で、顔文字（^▽^）はキーボードの記号と文字を組み合わせて作るテキストベースの表情です。顔文字はフォントさえ対応していればどこでも使え、絵文字よりも豊かな表現が可能です。',
+      },
+      {
+        q: 'Moji Boardは無料ですか？登録は必要ですか？',
+        a: 'はい、Moji Boardは完全無料です。登録やログイン、課金は一切不要で、すべての顔文字をすぐにコピーしてお使いいただけます。',
+      },
+      {
+        q: 'コピーした顔文字はどこに貼り付けられますか？',
+        a: 'LINE、Twitter（X）、Instagram DM、Discord、Facebook、Slackなど、テキストを入力できるすべての場所に貼り付けられます。PCではCtrl+V（MacではCmd+V）、スマホでは長押しして「ペースト」を選んでください。',
+      },
+      {
+        q: 'Moji Board iOSアプリはどこでダウンロードできますか？',
+        a: 'App Storeで「Moji Board」と検索するか、ページ上部の「アプリをダウンロード」ボタンをタップしてください。iOSアプリはオフラインでも使え、お気に入りやキーボード拡張機能にも対応しています。',
+      },
+      {
+        q: '顔文字が□や？で表示されるのはなぜですか？',
+        a: '一部の顔文字は日本語・韓国語の特殊文字や結合記号を使用しているため、対応フォントがないと正しく表示されないことがあります。Moji BoardはNoto Sans JP/KRを自動で読み込み、すべてのデバイスで正しく表示されるようにしています。',
+      },
+      {
+        q: '欲しい顔文字を素早く見つけるには？',
+        a: '上部の検索バーに日本語・韓国語・英語のキーワード（例：「ねこ」「猫」「cat」）を入力してください。左サイドバーから感情・動物・行動・キャラクターなどカテゴリー別に探すこともできます。',
+      },
+    ],
 
     ctaTitle: 'もっと顔文字を探す',
     ctaDesc: 'Moji Boardアプリで10,000以上の顔文字をオフラインでもいつでも使えます。',
@@ -229,21 +325,12 @@ export default async function GuidePage({ params }: Props) {
   const faqLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: c.section1Title,
-        acceptedAnswer: { '@type': 'Answer', text: c.section1Body },
-      },
-      {
-        '@type': 'Question',
-        name: c.section2Title,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: c.section2Steps.map(s => `${s.step}. ${s.title}: ${s.desc}`).join(' '),
-        },
-      },
-    ],
+    inLanguage,
+    mainEntity: c.faqs.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
   }
 
   const breadcrumbLd = {
@@ -496,6 +583,47 @@ export default async function GuidePage({ params }: Props) {
                 </li>
               ))}
             </ol>
+          </section>
+
+          {/* ── 섹션 5: FAQ ── */}
+          <section style={{ marginBottom: '56px' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '20px', paddingBottom: '8px', borderBottom: '2px solid var(--color-border)' }}>
+              {c.faqTitle}
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {c.faqs.map(({ q, a }, i) => (
+                <details
+                  key={i}
+                  open={i === 0}
+                  style={{
+                    background: 'var(--color-surface)',
+                    border: '1px solid var(--color-border)',
+                    borderRadius: '12px',
+                    padding: '16px 20px',
+                  }}
+                >
+                  <summary
+                    style={{
+                      cursor: 'pointer',
+                      fontWeight: 600,
+                      fontSize: '15px',
+                      color: 'var(--color-text-primary)',
+                      listStyle: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: '12px',
+                    }}
+                  >
+                    <span>{q}</span>
+                    <span style={{ color: 'var(--color-text-muted)', fontSize: '18px', flexShrink: 0 }}>+</span>
+                  </summary>
+                  <p style={{ marginTop: '12px', color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.75' }}>
+                    {a}
+                  </p>
+                </details>
+              ))}
+            </div>
           </section>
 
           {/* ── CTA ── */}

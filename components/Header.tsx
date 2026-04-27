@@ -195,6 +195,34 @@ export function Header({
         >
           {downloadLabel}
         </a>
+
+        {/* Guide button */}
+        <Link
+          href={`/${lang}/guide`}
+          title={lang === 'ko' ? '카오모지 가이드' : lang === 'ja' ? '顔文字ガイド' : 'Kaomoji Guide'}
+          style={{
+            background: 'transparent',
+            border: '1px solid var(--color-border)',
+            color: 'var(--color-text-secondary)',
+            borderRadius: '8px',
+            padding: '0 12px',
+            height: '32px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '5px',
+            fontSize: '13px',
+            fontWeight: 500,
+            textDecoration: 'none',
+            whiteSpace: 'nowrap',
+            flexShrink: 0,
+          }}
+          className="guide-btn"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 2h6.5a1.5 1.5 0 011.5 1.5V12L7 10l-4 2V2z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+          </svg>
+          <span className="guide-label">{lang === 'ko' ? '가이드' : lang === 'ja' ? 'ガイド' : 'Guide'}</span>
+        </Link>
       </div>
 
       <style>{`
@@ -202,6 +230,8 @@ export function Header({
           .mobile-menu-btn { display: flex !important; }
           .favorites-label { display: none; }
           .download-btn { display: none; }
+          .guide-label { display: none; }
+          .guide-btn { padding: 0 8px !important; }
         }
         @media (max-width: 480px) {
           .lang-switcher { display: none; }
