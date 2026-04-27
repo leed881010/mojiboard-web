@@ -40,10 +40,6 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
     languages: { ko: `${BASE_URL}/ko`, en: `${BASE_URL}/en`, ja: `${BASE_URL}/ja` },
   },
-  icons: {
-    icon: '/og-image.png',
-    apple: '/og-image.png',
-  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
