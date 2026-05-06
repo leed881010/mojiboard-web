@@ -79,32 +79,6 @@ export function EmojiCard({ emoji, isFavorite, isCopied, copyHint, onCopy, onTog
           <path d="M6.5 11.5C6.5 11.5 1 8.2 1 4.5a2.8 2.8 0 015.5-.8A2.8 2.8 0 0112 4.5C12 8.2 6.5 11.5 6.5 11.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
         </svg>
       </button>
-
-      {isCopied && (
-        <div style={{
-          position: 'absolute', inset: 0, display: 'flex',
-          alignItems: 'center', justifyContent: 'center',
-          borderRadius: '12px', pointerEvents: 'none',
-          background: 'rgba(0,0,0,0.45)',
-        }}>
-          <div style={{
-            background: '#fff',
-            color: '#111',
-            borderRadius: '20px',
-            padding: '4px 12px',
-            fontSize: '12px',
-            fontWeight: 600,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '4px',
-          }}>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2 6l3 3 5-5" stroke="#111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            복사됨
-          </div>
-        </div>
-      )}
     </div>
   )
 }
